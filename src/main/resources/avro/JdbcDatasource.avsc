@@ -1,0 +1,217 @@
+{
+  "type" : "record",
+  "name" : "JdbcDatasource",
+  "namespace" : "io.github.petersonjr.metadatacrawler.model",
+  "doc" : "A record representing a jdbc datasource, which contains one or more schemas as defined by JDBC",
+  "fields" : [ {
+    "name" : "db_url",
+    "type" : "string",
+    "doc" : "The jdbc url used to connect to the database"
+  }, {
+    "name" : "db_server",
+    "type" : [ "null", "string" ],
+    "doc" : "The database server",
+    "default" : null
+  }, {
+    "name" : "db_port",
+    "type" : [ "null", "string" ],
+    "doc" : "The database port",
+    "default" : null
+  }, {
+    "name" : "db_product_name",
+    "type" : [ "null", "string" ],
+    "doc" : "The database product name",
+    "default" : null
+  }, {
+    "name" : "db_product_version",
+    "type" : [ "null", "string" ],
+    "doc" : "The database product version",
+    "default" : null
+  }, {
+    "name" : "crawl_tool",
+    "type" : [ "null", "string" ],
+    "doc" : "The name of the tool used to crawl the database",
+    "default" : null
+  }, {
+    "name" : "crawl_ts",
+    "type" : [ "null", "string" ],
+    "doc" : "The timestamp of the crawl",
+    "default" : null
+  }, {
+    "name" : "user_name",
+    "type" : "string",
+    "doc" : "The user name used to connect to the database"
+  }, {
+    "name" : "catalog_name",
+    "type" : "string",
+    "doc" : "The name of the catalog"
+  }, {
+    "name" : "has_error",
+    "type" : [ "null", "boolean" ],
+    "doc" : "Any error ocurred while crawling the catalog?",
+    "default" : null
+  }, {
+    "name" : "error_msg",
+    "type" : [ "null", "string" ],
+    "doc" : "If error ocurred, what's the error msg?",
+    "default" : null
+  }, {
+    "name" : "remarks",
+    "type" : [ "null", "string" ],
+    "doc" : "Any remarks on the catalog",
+    "default" : null
+  }, {
+    "name" : "schemas",
+    "type" : [ "null", {
+      "type" : "array",
+      "items" : {
+        "type" : "record",
+        "name" : "Schema",
+        "doc" : "A catalog's schema",
+        "fields" : [ {
+          "name" : "name",
+          "type" : "string",
+          "doc" : "The schema name"
+        }, {
+          "name" : "qualified_name",
+          "type" : [ "null", "string" ],
+          "doc" : "The schemas='s qualified name",
+          "default" : null
+        }, {
+          "name" : "tables",
+          "type" : [ "null", {
+            "type" : "array",
+            "items" : {
+              "type" : "record",
+              "name" : "Table",
+              "doc" : "A table, which usually belongs to a schema and has columns",
+              "fields" : [ {
+                "name" : "name",
+                "type" : "string",
+                "doc" : "The table name"
+              }, {
+                "name" : "type",
+                "type" : [ "null", "string" ],
+                "doc" : "The table type (VIEW, TABLE, etc)",
+                "default" : null
+              }, {
+                "name" : "qualified_name",
+                "type" : [ "null", "string" ],
+                "doc" : "The table's qualified name",
+                "default" : null
+              }, {
+                "name" : "remarks",
+                "type" : [ "null", "string" ],
+                "doc" : "Any remarks on the table",
+                "default" : null
+              }, {
+                "name" : "columns",
+                "type" : [ "null", {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "record",
+                    "name" : "Column",
+                    "doc" : "A table column",
+                    "fields" : [ {
+                      "name" : "name",
+                      "type" : "string",
+                      "doc" : "The column name"
+                    }, {
+                      "name" : "qualified_name",
+                      "type" : [ "null", "string" ],
+                      "doc" : "The column's qualified name",
+                      "default" : null
+                    }, {
+                      "name" : "number",
+                      "type" : [ "null", "int" ],
+                      "doc" : "The column number (0-based)",
+                      "default" : null
+                    }, {
+                      "name" : "size",
+                      "type" : [ "null", "int" ],
+                      "doc" : "The column size",
+                      "default" : null
+                    }, {
+                      "name" : "nullable",
+                      "type" : [ "null", "boolean" ],
+                      "doc" : "Is the column nullable?",
+                      "default" : null
+                    }, {
+                      "name" : "primary_key",
+                      "type" : [ "null", "boolean" ],
+                      "doc" : "Is the column a primary key?",
+                      "default" : null
+                    }, {
+                      "name" : "indexed",
+                      "type" : [ "null", "boolean" ],
+                      "doc" : "Is the column indexed?",
+                      "default" : null
+                    }, {
+                      "name" : "column_type",
+                      "type" : [ "null", "string" ],
+                      "doc" : "The column type",
+                      "default" : null
+                    }, {
+                      "name" : "native_type",
+                      "type" : [ "null", "string" ],
+                      "doc" : "The native column type (as defined by the datasource itself)",
+                      "default" : null
+                    }, {
+                      "name" : "remarks",
+                      "type" : [ "null", "string" ],
+                      "doc" : "Any remarks on the column",
+                      "default" : null
+                    } ]
+                  }
+                } ],
+                "doc" : "The table's columns",
+                "default" : null
+              } ]
+            }
+          } ],
+          "doc" : "The schemas' tables",
+          "default" : null
+        }, {
+          "name" : "relationships",
+          "type" : [ "null", {
+            "type" : "array",
+            "items" : {
+              "type" : "record",
+              "name" : "Relationship",
+              "doc" : "Relationship between two tables, where one set of columns is the primary key, and another set is the foreign key",
+              "fields" : [ {
+                "name" : "primary_table",
+                "type" : "string",
+                "doc" : "The table of the primary key column(s)"
+              }, {
+                "name" : "primary_columns",
+                "type" : {
+                  "type" : "array",
+                  "items" : "string"
+                },
+                "doc" : "The primary key columns of this relationship",
+                "default" : [ ]
+              }, {
+                "name" : "foreign_table",
+                "type" : "string",
+                "doc" : "The table of the foreign key column(s)."
+              }, {
+                "name" : "foreign_columns",
+                "type" : {
+                  "type" : "array",
+                  "items" : "string"
+                },
+                "doc" : "The foreign key columns of this relationship",
+                "default" : [ ]
+              } ]
+            }
+          } ],
+          "doc" : "The schemas' tables relationships",
+          "default" : null
+        } ]
+      }
+    } ],
+    "doc" : "The catalog's schemas",
+    "default" : null
+  } ]
+}
