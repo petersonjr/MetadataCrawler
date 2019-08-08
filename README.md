@@ -53,8 +53,10 @@ java -jar simple-metadata-crawler.jar --url  "jdbc:mysql://localhost:33306" -u r
  
 Via environment variable(which is [safer](https://picocli.info/#_interactive_password_options)):
 
- export JDBC_PASSWORD="pass" && java -jar simple-metadata-crawler.jar "jdbc:mysql://localhost:33306" -u root --format json -o mysql.json
- 
+```
+export JDBC_PASSWORD="pass" && java -jar simple-metadata-crawler.jar "jdbc:mysql://localhost:33306" -u root --format json -o mysql.json
+```
+
 Defining the environment variable:
 
 ```
@@ -153,9 +155,9 @@ database == namespace qualifier within the server, rarely referred to as catalog
 
 Therefore, the following decisions were made:
 
-* For RDMS like Oracle or Mysql, in which an object may be identified by (schema name + object name), the objects will be outputed as part of a schema and of a catalog with the same name. For instance, a table EVENT of schema COMPETITIONS will be outputed as COMPETITIONS(catalog) -> COMPETITIONS(schema) -> EVENT(table).
-* For RDMS like SqlServer or PostgreSQL, in which an object may be identified by (catalog name + schema name + object name), the objects will be outputed as part of a catalog and schema with the respective names. For instance, a table EVENT of schema DBO and catalog COMPETITIONS will be outputed as COMPETITIONS(catalog) -> DBO(schema) -> EVENT(table).
-* An object qualified name respects the qualified name informed by the database vendor. For instance, a column qualifed name in SQL Server will be (database name + schema + table name + column name), where in Oracle it will be (database name + table name + column name).
+* For RDMS like Oracle or Mysql, in which an object may be identified by (schema name + object name), the objects will be outputed **as part of a schema and of a catalog with the same name**. For instance, a table EVENT of schema COMPETITIONS will be outputed as COMPETITIONS(catalog) -> COMPETITIONS(schema) -> EVENT(table).
+* For RDMS like SqlServer or PostgreSQL, in which an object may be identified by (catalog name + schema name + object name), the objects will be outputed **as part of a catalog and schema with the respective names**. For instance, a table EVENT of schema DBO and catalog COMPETITIONS will be outputed as COMPETITIONS(catalog) -> DBO(schema) -> EVENT(table).
+* An object qualified name **respects the qualified name informed by the database vendor**. For instance, a column qualifed name in SQL Server will be (database name + schema + table name + column name), where in Oracle it will be (database name + table name + column name).
 
 ## Hive analysis
 
