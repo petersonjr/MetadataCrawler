@@ -159,7 +159,7 @@ Therefore, the following decisions were made:
 
 ## Hive analysis
 
-You can use hive to [quickly process data obtained with Metadata](hive.md).
+You can use hive to [quickly process data obtained with MetadataCrawler](hive.md).
 
 ## Build Instructions
 
