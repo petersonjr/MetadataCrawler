@@ -1,5 +1,4 @@
 # MetadataCrawler
-
 A simple tool to extract metadata from relational databases
 
 ## General Info
@@ -195,7 +194,7 @@ To create an Eclipse project:
 
 ```
 mvn eclipse:clean
-mvn eclipse:eclipse -P all-drivers -DdownloadSources=true -DdownloadJavadocs=true 
+mvn eclipse:eclipse -P all-drivers -DdownloadSources=true -DdownloadJavadocs=true
 ```
 
 Make sure to set [UTF-8 enconding](https://stackoverflow.com/questions/9180981/how-to-support-utf-8-encoding-in-eclipse) [in eclipse](https://stackoverflow.com/questions/4043634/define-eclipse-project-encoding-as-utf-8-from-maven).
