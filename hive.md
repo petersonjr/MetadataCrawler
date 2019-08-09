@@ -19,7 +19,7 @@ hdfs dfs -rm -f  /dbs_metadata/raw/*
 hdfs dfs -put data/2019-08-08/* /dbs_metadata/raw/
 
 ```
-* In Hive - Criate external table
+* In Hive - Create external table
 
 ```
 drop table dbs_metadata;
@@ -38,7 +38,7 @@ CREATE EXTERNAL TABLE dbs_metadata
     'avro.schema.url'='hdfs:///dbs_metadata/JdbcDatasource.avsc');
 ```
 
-* In Hive - Criate view
+* In Hive - Create view
 
 ```
 CREATE VIEW dbs_metadata_extended AS
@@ -60,7 +60,7 @@ select distinct db_server, db_port, db_product_name, catalog_name, schema from d
 select db_url, catalog_name, schema, tabl, col, col_number, col_type from dbs_metadata_extended where schema='dbo' and lower(col) LIKE 'nom\_%' limit 50;
 ``` 
 
-* You may also create another optimized table, and filtering system schemas and catalogs
+* You may also create another optimized table, filtering system schemas and catalogs
 
 ```
 CREATE EXTERNAL TABLE IF NOT EXISTS dbs_metadata_dm (
@@ -144,7 +144,7 @@ WHERE schema_name not in ('INFORMATION_SCHEMA',
 'SYSTEM',
 'WMSYS',
 'XDB',
-'XS$NULL') OR 
+'XS$NULL') AND 
 catalog_name NOT IN ('ANONYMOUS',
 'APEX_030200',
 'APEX_040200',
