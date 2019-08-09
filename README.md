@@ -18,7 +18,7 @@ As a bonus, check how you can use [hive to process data generated with MetadataC
 
 ## How to use
 
-MetadataCrawler is run as a standalone java application. Just download the latest release and run:
+MetadataCrawler is run as a standalone java application. Just download the [latest release](https://github.com/petersonjr/MetadataCrawler/releases/latest) and run:
 
 ```
 java -jar simple-metadata-crawler.jar --url  "jdbc:mysql://localhost:33306" -u root -p "metadata" --format json -o mysql.json
